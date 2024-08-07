@@ -1,41 +1,33 @@
 /* eslint-disable react/prop-types */
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { useRouter } from 'next/router';
-import { useEffect, useState } from 'react';
-import NavBar from '../components/nav/NavBar';
+import { Nav, Navbar, Container } from 'react-bootstrap';
 import '../styles/globals.css';
+import Link from 'next/link';
 
-function MyApp({ Component, pageProps }) {
-  const [token, setTokenState] = useState(null);
-  const router = useRouter();
-
-  useEffect(() => {
-    setTokenState(localStorage.getItem('auth_token', '') || '');
-  }, []);
-
-  useEffect(() => {
-    if (!['/login', '/register'].includes(router.route) && token !== null) {
-      if (!token) {
-        router.push('/login');
-      }
-    }
-  }, [router, token]);
-
-  const setToken = (newToken) => {
-    localStorage.setItem('auth_token', newToken);
-    setTokenState(newToken);
-  };
-
-  const newPageProps = { ...pageProps, token, setToken };
-
-  if (token === null) {
-    return 'Loading...';
-  }
-
+function MyApp() {
   return (
     <>
-      <NavBar token={token} setToken={setToken} />
-      <Component {...newPageProps} />
+      <Navbar color="dark" style={{ background: '#A9A9A9', font: 'bold' }} collapseOnSelect expand="lg">
+        <Container>
+          <Nav navbar>
+            <Link passHref href="/">
+              <Navbar.Brand>Rare Publishing</Navbar.Brand>
+            </Link>
+            <Link passHref href="/posts">
+              <Nav.Link>Posts</Nav.Link>
+            </Link>
+            <Link passHref href="/users">
+              <Nav.Link>Users</Nav.Link>
+            </Link>
+            <Link passHref href="/categories">
+              <Nav.Link>Categories</Nav.Link>
+            </Link>
+            <Link passHref href="/tags">
+              <Nav.Link>Tags</Nav.Link>
+            </Link>
+          </Nav>
+        </Container>
+      </Navbar>
     </>
   );
 }
