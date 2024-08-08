@@ -1,4 +1,4 @@
-import { Table } from 'react-bootstrap';
+import { Button, Table } from 'react-bootstrap';
 import { useEffect, useState } from 'react';
 import getCategories from '../utils/data/categoriesData';
 
@@ -10,27 +10,30 @@ export default function ViewCategories() {
   }, []);
 
   return (
-    <Table>
-      <thead>
-        <tr>
-          <th>View All Categories</th>
-        </tr>
-      </thead>
-      <tbody>
-        {categories.length === 0 ? (
+    <>
+      <Button>Create New Category</Button>
+      <Table>
+        <thead>
           <tr>
-            <td>No categories available</td>
+            <th>View All Categories</th>
           </tr>
-        ) : (
-          categories.map((c) => (
-            <tr key={c.id}>
-              {' '}
-              {/* Ensure each row has a unique key */}
-              <td>{c.label}</td> {/* Use <td> instead of <th> for table data */}
+        </thead>
+        <tbody>
+          {categories.length === 0 ? (
+            <tr>
+              <td>No categories available</td>
             </tr>
-          ))
-        )}
-      </tbody>
-    </Table>
+          ) : (
+            categories.map((c) => (
+              <tr key={c.id}>
+                {' '}
+                {/* Ensure each row has a unique key */}
+                <td>{c.label}</td> {/* Use <td> instead of <th> for table data */}
+              </tr>
+            ))
+          )}
+        </tbody>
+      </Table>
+    </>
   );
 }
