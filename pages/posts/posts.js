@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { Table } from 'react-bootstrap';
 import { useEffect, useState } from 'react';
-import getPosts from '../utils/data/postsData';
+import { getPosts } from '../../utils/data/postsData';
 
 export default function ViewPosts() {
   const [posts, setPosts] = useState([]);
@@ -27,7 +27,7 @@ export default function ViewPosts() {
             <td>{p.title}</td>
             <td>{p.publishedOn}</td>
             <td>{p.content}</td>
-            <td>{p.approved}</td>
+            <td>{p.approved ? 'Yes' : 'No'}</td>
             <td>
               <Link passHref href={`/posts/${p.id}`}>Details</Link>
             </td>
