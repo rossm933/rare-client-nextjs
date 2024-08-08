@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import { Button, FloatingLabel, Form } from 'react-bootstrap';
-import { createCategory, getCategories } from '../utils/data/categoriesData';
+import { createCategory, getCategories } from '../../utils/data/categoriesData';
 
 const initialState = {
   label: '',
