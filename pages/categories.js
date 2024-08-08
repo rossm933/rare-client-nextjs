@@ -11,7 +11,7 @@ export default function ViewCategories() {
 
   return (
     <>
-      <Button>Create New Category</Button>
+      <Button href="/categories/new">Create New Category</Button>
       <Table>
         <thead>
           <tr>
@@ -26,9 +26,7 @@ export default function ViewCategories() {
           ) : (
             categories.map((c) => (
               <tr key={c.id}>
-                {' '}
-                {/* Ensure each row has a unique key */}
-                <td>{c.label}</td> {/* Use <td> instead of <th> for table data */}
+                <td>{c.label}</td>
               </tr>
             ))
           )}
