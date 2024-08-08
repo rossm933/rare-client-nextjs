@@ -1,6 +1,6 @@
 const baseUrl = 'https://localhost:5001';
 
-const getCategories = () => new Promise((resolve, reject) => {
+export const getCategories = () => new Promise((resolve, reject) => {
   fetch(`${baseUrl}/categories`, {
     method: 'GET',
   })
@@ -9,4 +9,11 @@ const getCategories = () => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
-export default getCategories;
+export const createCategory = () => new Promise((resolve, reject) => {
+  fetch(`${baseUrl}/categories`, {
+    method: 'POST',
+  })
+    .then((response) => response.json())
+    .then((data) => resolve(data))
+    .catch(reject);
+});

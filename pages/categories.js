@@ -1,6 +1,6 @@
 import { Button, Table } from 'react-bootstrap';
 import { useEffect, useState } from 'react';
-import getCategories from '../utils/data/categoriesData';
+import { getCategories } from '../utils/data/categoriesData';
 
 export default function ViewCategories() {
   const [categories, setCategories] = useState([]);

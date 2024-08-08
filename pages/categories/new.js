@@ -1,7 +1,7 @@
+import CategoryForm from '../../components/CategoryForm';
+
 export default function newCategory() {
   return (
-    <div>
-      New Category Form
-    </div>
+    <CategoryForm />
   );
 }
