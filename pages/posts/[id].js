@@ -25,7 +25,7 @@ export default function ViewPostDetails() {
         <p>
           User: {postDetails.userId }
         </p>
-        <p> Tags: {postDetails.tags}</p>
+        <p> Tags: {postDetails.tags?.label}</p>
       </div>
     </div>
   );

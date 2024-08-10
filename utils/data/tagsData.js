@@ -28,3 +28,15 @@ export const createTag = (payload) => new Promise((resolve, reject) => {
     .then((data) => resolve(data))
     .catch(reject);
 });
+
+export const getPostTags = (id) => new Promise((resolve, reject) => {
+  fetch(`http://localhost:5000/posts/${id}/tags`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  })
+    .then((response) => response.json())
+    .then((data) => resolve(Object.values(data)))
+    .catch(reject);
+});
