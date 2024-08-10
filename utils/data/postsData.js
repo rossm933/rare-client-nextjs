@@ -18,6 +18,24 @@ const getPosts = () => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
+const getSinglePost = (id) => new Promise((resolve, reject) => {
+  fetch(`http://localhost:5000/posts/${id}`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      resolve(data);
+    })
+    .catch(reject);
+});
+
+export {
+  getPosts,
+  getSinglePost,
+};
 const getFilteredPosts = (id) => new Promise((resolve, reject) => {
   fetch(`${baseUrl}/posts/category/${id}`, {
     method: 'GET',
