@@ -16,7 +16,6 @@ export default function CategoryForm() {
   }, []);
 
   const handleChange = (e) => {
-    console.warn('input'); // getting input but not displaying on form
     const { id, value } = e.target;
     setFormInput((prevState) => ({
       ...prevState,
@@ -26,6 +25,7 @@ export default function CategoryForm() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    console.warn('form submitted', formInput);
     const payload = { ...formInput };
     createCategory(payload).then(() => {
       router.push('/categories');
@@ -37,11 +37,11 @@ export default function CategoryForm() {
       <h2>Create Category</h2>
 
       {/* TITLE INPUT */}
-      <FloatingLabel controlId="floatingInput1" label="Category Label" className="mb-3">
+      <FloatingLabel controlId="label" label="Category Label" className="mb-3">
         <Form.Control
           type="text"
           placeholder="Enter a Category Label"
-          name="label"
+          id="label"
           value={formInput.label}
           onChange={handleChange}
           required
