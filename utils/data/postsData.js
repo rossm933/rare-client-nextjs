@@ -30,12 +30,8 @@ const getFilteredPosts = (id) => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
-export {
-  getPosts,
-  getFilteredPosts,
-};
 const getSinglePost = (id) => new Promise((resolve, reject) => {
-  fetch(`http://localhost:5000/posts/${id}`, {
+  fetch(`${baseUrl}/posts/${id}`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
@@ -49,7 +45,7 @@ const getSinglePost = (id) => new Promise((resolve, reject) => {
 });
 
 const createPost = (payload) => new Promise((resolve, reject) => {
-  fetch('http://localhost:5000/posts', {
+  fetch(`${baseUrl}/posts`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -64,7 +60,7 @@ const createPost = (payload) => new Promise((resolve, reject) => {
 });
 
 const editPost = (id, payload) => new Promise((resolve, reject) => {
-  fetch(`http://localhost:5000/posts/${id}`, {
+  fetch(`${baseUrl}/posts/${id}`, {
     method: 'PATCH',
     headers: {
       'Content-Type': 'application/json',
@@ -77,7 +73,7 @@ const editPost = (id, payload) => new Promise((resolve, reject) => {
 });
 
 const deletePost = (id) => new Promise((resolve, reject) => {
-  fetch(`http://localhost:5000/posts/${id}`, {
+  fetch(`${baseUrl}/posts/${id}`, {
     method: 'DELETE',
     headers: {
       'Content-Type': 'application/json',
@@ -88,5 +84,5 @@ const deletePost = (id) => new Promise((resolve, reject) => {
 });
 
 export {
-  getPosts, getSinglePost, createPost, editPost, deletePost,
+  getPosts, getSinglePost, createPost, editPost, deletePost, getFilteredPosts,
 };

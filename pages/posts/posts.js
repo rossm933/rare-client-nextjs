@@ -1,10 +1,13 @@
 import Link from 'next/link';
-import { Table, Button } from 'react-bootstrap';
+import { Table, Button, Dropdown } from 'react-bootstrap';
 import { useEffect, useState } from 'react';
-import { getPosts, deletePost } from '../../utils/data/postsData';
+import { getPosts, deletePost, getFilteredPosts } from '../../utils/data/postsData';
+import { getCategories } from '../../utils/data/categoriesData';
 
 export default function ViewPosts() {
   const [posts, setPosts] = useState([]);
+  const [categories, setCategories] = useState([]);
+  const [selectedCategory, setSelectedCategory] = useState([]);
 
   const deleteThisPost = (id) => {
     if (window.confirm('Delete this ticket?')) {
@@ -14,10 +17,35 @@ export default function ViewPosts() {
     }
   };
   useEffect(() => {
-    getPosts().then(setPosts);
-  }, []);
+    getCategories().then(setCategories);
+    if (selectedCategory === 'All') {
+      getPosts().then(setPosts);
+    } else {
+      getFilteredPosts(selectedCategory).then(setPosts);
+    }
+    return selectedCategory;
+  }, [selectedCategory]);
+
   return (
     <>
+      <Dropdown>
+        <Dropdown.Toggle variant="success" id="dropdown-basic">
+          Filter by Category
+        </Dropdown.Toggle>
+
+        <Dropdown.Menu>
+          <Dropdown.Item onClick={() => setSelectedCategory('All')}>All</Dropdown.Item>
+          {categories.map((category) => (
+            <Dropdown.Item
+              key={category.id}
+              onClick={() => setSelectedCategory(category.id)}
+            >
+              {category.label}
+            </Dropdown.Item>
+          ))}
+        </Dropdown.Menu>
+      </Dropdown>
+
       <div>
         <Table>
           <thead>
