@@ -1,5 +1,5 @@
 export const getTags = () => new Promise((resolve, reject) => {
-  fetch('http://localhost:5000/tags', {
+  fetch('https://localhost:5001/tags', {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
@@ -17,7 +17,7 @@ export const getTags = () => new Promise((resolve, reject) => {
 });
 
 export const createTag = (payload) => new Promise((resolve, reject) => {
-  fetch('http://localhost:5000/tags', {
+  fetch('https://localhost:5001/tags', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
