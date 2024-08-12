@@ -12,7 +12,7 @@ function NavBar() {
             <Link passHref href="/">
               <Navbar.Brand>Rare Publishing</Navbar.Brand>
             </Link>
-            <Link passHref href="/posts">
+            <Link passHref href="/posts/posts">
               <Nav.Link>Posts</Nav.Link>
             </Link>
             <Link passHref href="/users">

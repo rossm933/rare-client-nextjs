@@ -8,7 +8,7 @@ export const getTags = () => new Promise((resolve, reject) => {
     .then((response) => response.json())
     .then((data) => {
       if (data) {
-        resolve(Object.values(data).map((tag, index) => ({ ...tag, id: tag.id || index })));
+        resolve(Object.values(data));
       } else {
         resolve([]);
       }
@@ -26,5 +26,17 @@ export const createTag = (payload) => new Promise((resolve, reject) => {
   })
     .then((response) => response.json())
     .then((data) => resolve(data))
+    .catch(reject);
+});
+
+export const getPostTags = (id) => new Promise((resolve, reject) => {
+  fetch(`http://localhost:5000/posts/${id}/tags`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  })
+    .then((response) => response.json())
+    .then((data) => resolve(Object.values(data)))
     .catch(reject);
 });
