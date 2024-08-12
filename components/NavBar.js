@@ -24,6 +24,9 @@ function NavBar() {
             <Link passHref href="/tags">
               <Nav.Link>Tags</Nav.Link>
             </Link>
+            <Link passHref href="/myPosts">
+              <Nav.Link>My Posts</Nav.Link>
+            </Link>
           </Nav>
         </Container>
       </Navbar>

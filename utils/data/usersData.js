@@ -1,4 +1,4 @@
-export const url = 'http://localhost:5000';
+export const url = 'https://localhost:5001';
 
 export const getUsers = () => new Promise((resolve, reject) => {
   fetch(`${url}/users`, {
