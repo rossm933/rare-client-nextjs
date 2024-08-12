@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import PostForm from '../../../components/forms/PostForm';
-import { getSinglePost } from '../../../utils/data/postsData';
+import { getSinglePostWithTags } from '../../../utils/data/postsData';
 
 export default function EditPost() {
   const router = useRouter();
@@ -10,7 +10,7 @@ export default function EditPost() {
 
   useEffect(() => {
     if (id) {
-      getSinglePost(id).then(setEditItem);
+      getSinglePostWithTags(id).then(setEditItem);
     }
   }, [id]);
 

@@ -18,6 +18,7 @@ export default function ViewPosts() {
   };
   useEffect(() => {
     getCategories().then(setCategories);
+    getPosts().then(setPosts);
     if (selectedCategory === 'All') {
       getPosts().then(setPosts);
     } else {

@@ -19,29 +19,16 @@ const getPosts = () => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
-const getFilteredPosts = (id) => new Promise((resolve, reject) => {
+const getFilteredPosts = async (id) => new Promise((resolve, reject) => {
   fetch(`${baseUrl}/posts/category/${id}`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
+      Allow: 'GET, POST, PUT, DELETE',
     },
   })
     .then((response) => response.json())
     .then((data) => resolve(data))
-    .catch(reject);
-});
-
-const getSinglePost = (id) => new Promise((resolve, reject) => {
-  fetch(`${baseUrl}/posts/${id}`, {
-    method: 'GET',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-  })
-    .then((response) => response.json())
-    .then((data) => {
-      resolve(data);
-    })
     .catch(reject);
 });
 
@@ -53,7 +40,7 @@ const createPost = (payload) => new Promise((resolve, reject) => {
     },
     body: JSON.stringify(payload),
   })
-    .then((response) => response.json())
+    .then((response) => response.text())
     .then((data) => {
       resolve(data);
     })
@@ -121,5 +108,5 @@ const getSinglePostWithTags = (id) => new Promise((resolve, reject) => {
 });
 
 export {
-  getPosts, getSinglePost, createPost, editPost, deletePost, getFilteredPosts, getSinglePostWithTags, getPostsWithTags, getUserPosts,
+  getPosts, createPost, editPost, deletePost, getFilteredPosts, getSinglePostWithTags, getPostsWithTags, getUserPosts,
 };

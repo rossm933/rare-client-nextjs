@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
-import { getSinglePost } from '../../utils/data/postsData';
+import { getSinglePostWithTags } from '../../utils/data/postsData';
 
 export default function ViewPostDetails() {
   const [postDetails, setPostDetails] = useState({});
@@ -9,7 +9,7 @@ export default function ViewPostDetails() {
   const { id } = router.query;
 
   useEffect(() => {
-    getSinglePost(id).then(setPostDetails);
+    getSinglePostWithTags(id).then(setPostDetails);
   }, [id]);
 
   return (
@@ -25,7 +25,7 @@ export default function ViewPostDetails() {
         <p>
           User: {postDetails.userId }
         </p>
-        <p> Tags: {postDetails.tags?.label}</p>
+        <p> Tags: {postDetails.tags.label}</p>
       </div>
     </div>
   );
