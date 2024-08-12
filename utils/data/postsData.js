@@ -19,20 +19,6 @@ const getPosts = () => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
-const getSinglePost = (id) => new Promise((resolve, reject) => {
-  fetch(`http://localhost:5000/posts/${id}`, {
-    method: 'GET',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-  })
-    .then((response) => response.json())
-    .then((data) => {
-      resolve(data);
-    })
-    .catch(reject);
-});
-
 const getFilteredPosts = (id) => new Promise((resolve, reject) => {
   fetch(`${baseUrl}/posts/category/${id}`, {
     method: 'GET',
@@ -135,5 +121,5 @@ const getSinglePostWithTags = (id) => new Promise((resolve, reject) => {
 });
 
 export {
-  getPosts, getSinglePost, createPost, editPost, deletePost, getFilteredPosts,
+  getPosts, getSinglePost, createPost, editPost, deletePost, getFilteredPosts, getSinglePostWithTags, getPostsWithTags, getUserPosts,
 };
