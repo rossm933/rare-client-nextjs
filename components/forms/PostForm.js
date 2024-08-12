@@ -24,6 +24,10 @@ function PostForm({ post }) {
 
   useEffect(() => {
     getTags().then(setTags);
+    console.warn(tags);
+  }, []);
+
+  useEffect(() => {
     getPosts().then(setPostData);
 
     if (post.id) setPostData(post);
@@ -31,25 +35,23 @@ function PostForm({ post }) {
 
   const handleChange = (e) => {
     const {
-      name, type, checked, value,
+      name, value,
     } = e.target;
-    if (type === 'checkbox') {
-      const currentTagIds = [...postData.tags];
-      const tagId = parseInt(e.target.value, 10);
-      if (checked) {
-        currentTagIds.push(tagId);
-      } else {
-        const index = currentTagIds.indexOf(tagId);
-        currentTagIds.splice(index, 1);
-      }
-      setPostData((prevState) => ({
-        ...prevState,
-        tags: currentTagIds,
-        [name]: name === 'approved' ? value === 'true' : value, // Convert to boolean
-      }));
-    }
+    // if (type === 'checkbox') {
+    //   const currentTagIds = [...postData.tags];
+    //   const tagId = parseInt(e.target.value, 10);
+    //   if (checked) {
+    //     currentTagIds.push(tagId);
+    //   } else {
+    //     const index = currentTagIds.indexOf(tagId);
+    //     currentTagIds.splice(index, 1);
+    //   }
+    setPostData((prevState) => ({
+      ...prevState,
+      // tags: currentTagIds,
+      [name]: name === 'approved' ? value === 'true' : value, // Convert to boolean
+    }));
   };
-
   const handleSubmit = (e) => {
     e.preventDefault();
     if (post.id) {
@@ -57,7 +59,7 @@ function PostForm({ post }) {
     } else {
       const payload = { ...postData, post: post.id };
       createPost(payload).then(({ name }) => {
-        const patchPayload = { firebaseKey: name };
+        const patchPayload = { id: name };
         editPost(patchPayload).then(() => {
           router.push('/posts/posts');
         });
@@ -114,15 +116,20 @@ function PostForm({ post }) {
         </Form.Select>
       </FloatingLabel>
 
-      <div>
+      {/* <div>
         <b>Tags: </b>
         {tags.map((tag) => (
           <label key={tag.id}>
-            <input type="checkbox" value={tag.id} onChange={handleChange} checked={postData.tagId.includes(tag.id)} />
+            <input
+              type="checkbox"
+              value={tag.id}
+              onChange={handleChange}
+              checked={postData.tagId.includes(tag.id)}
+            />
             {tag.label}
           </label>
         ))}
-      </div>
+      </div> */}
 
       <Button id="submit-ticket" type="submit">{post.id ? 'Update' : 'Create'}Post</Button>
     </Form>
@@ -135,9 +142,10 @@ PostForm.propTypes = {
     image_Url: PropTypes.string,
     content: PropTypes.string,
     approved: PropTypes.bool,
-    tags: PropTypes.arrayOf(PropTypes.string),
+    // tags: PropTypes.arrayOf(PropTypes.string),
     category_Id: PropTypes.number,
     id: PropTypes.number,
+    // tagId: PropTypes.number,
 
   }),
 };

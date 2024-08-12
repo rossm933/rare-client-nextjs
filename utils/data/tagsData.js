@@ -8,7 +8,7 @@ export const getTags = () => new Promise((resolve, reject) => {
     .then((response) => response.json())
     .then((data) => {
       if (data) {
-        resolve(Object.values(data).map((tag, index) => ({ ...tag, id: tag.id || index })));
+        resolve(Object.values(data));
       } else {
         resolve([]);
       }
